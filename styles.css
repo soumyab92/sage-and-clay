@@ -2772,6 +2772,43 @@ footer {
   .testimonial-grid {
     grid-template-columns: 1fr !important;
   }
+
+  /* Keep Add to Cart buttons in a single line on mobile devices */
+  .pdp-actions {
+    gap: var(--spacing-xs) !important;
+  }
+
+  .pdp-actions .qty-btn {
+    padding: 8px 8px !important;
+  }
+
+  .pdp-actions .btn,
+  .sticky-add-bar .btn,
+  .wl-add-cart,
+  .wl-add-btn {
+    white-space: nowrap !important;
+    padding-left: 12px !important;
+    padding-right: 12px !important;
+    font-size: 11px !important;
+    letter-spacing: 0.02em !important;
+  }
+
+  .sticky-add-bar {
+    padding: var(--spacing-xs) var(--spacing-sm) !important;
+    gap: var(--spacing-xs) !important;
+  }
+
+  .sticky-add-bar-info {
+    min-width: 0;
+  }
+
+  .sticky-add-bar-title {
+    font-size: 12px !important;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 140px;
+  }
 }
 
 /* --- Mega Menu Styles --- */
