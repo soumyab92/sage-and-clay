@@ -1554,7 +1554,7 @@ function renderHome(container) {
 
     <!-- Bestseller Carousel -->
     <section class="container view-section">
-      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: var(--spacing-lg);" data-reveal>
+      <div class="section-header-row" data-reveal>
         <h2>Our Award-Winning Bestsellers</h2>
         <a href="#shop" class="btn-ghost btn" style="text-transform:none; font-weight:600; padding:8px 16px;">View All <i class="fa-solid fa-arrow-right" style="margin-left:4px;"></i></a>
       </div>
@@ -1585,10 +1585,10 @@ function renderHome(container) {
       <h2 style="text-align: center; margin-bottom: var(--spacing-lg);" data-reveal>Target Your Skin Concerns</h2>
       <div class="concern-grid">
         ${[
-      { concern: "Acne", title: "Acne & Blemishes", subtitle: "Clarify & Refine", img: "images/quiz_skin_options.png", alt: "Close-up portraits showing clear, healthy skin across different skin types" },
-      { concern: "Anti-Aging", title: "Lines & Aging", subtitle: "Smooth & Firm", img: "images/about_hero.png", alt: "Botanical skincare lab with active-ingredient formulations in amber glass" },
+      { concern: "Acne", title: "Acne & Blemishes", subtitle: "Clarify & Refine", img: "images/concern_acne.png", alt: "Young woman with clear, calm skin smiling after her clarifying routine" },
+      { concern: "Anti-Aging", title: "Lines & Aging", subtitle: "Smooth & Firm", img: "images/concern_aging.png", alt: "Woman in her forties with smooth, firm, radiant skin" },
       { concern: "Hydration", title: "Dehydration", subtitle: "Plump & Hydrate", img: "images/hero_lifestyle.png", alt: "Woman with dewy, hydrated skin applying serum in natural light" },
-      { concern: "Sensitivity", title: "Redness & Irritation", subtitle: "Soothe & Calm", img: "images/blog_hero.png", alt: "Calming skincare ritual flat lay with soothing botanical ingredients" },
+      { concern: "Sensitivity", title: "Redness & Irritation", subtitle: "Soothe & Calm", img: "images/concern_sensitivity.png", alt: "Woman with soothed, even-toned skin free of redness" },
     ].map((c, i) => `
           <div class="concern-card" onclick="window.location.hash='#shop?concern=${c.concern}'" data-reveal style="--reveal-delay: ${i * 80}ms;">
             <img src="${c.img}" alt="${c.alt}" class="concern-card-img" loading="lazy" />
@@ -2257,36 +2257,55 @@ function renderPDP(container, productId) {
         </div>
 
         <div class="pdp-tab-content" id="tab-reviews" role="tabpanel">
-          <div class="grid-12" style="align-items:start;">
-            <div class="grid-4-fraction" style="background-color:var(--color-white); border:1px solid var(--color-border); padding:var(--spacing-md); border-radius:var(--radius-md); text-align:center; box-shadow:var(--shadow-sm);">
-              <h3 style="font-size:48px; color:var(--color-terracotta); line-height:1; font-weight:700;">${product.rating}</h3>
-              <p style="font-size:12px; font-weight:600; text-transform:uppercase; margin:var(--spacing-xxs) 0;">Out of 5 Stars</p>
-              ${getStarsHtml(product.rating)}
-              <p style="font-size:12px; color:var(--color-text-muted); margin-top:var(--spacing-xs);">98% of customers would recommend this formulation.</p>
-            </div>
-            <div class="grid-8-fraction" style="display:flex; flex-direction:column; gap:var(--spacing-sm);">
-              <div style="margin-bottom:var(--spacing-sm);">
-                <span style="font-size:12px; font-weight:600; text-transform:uppercase; color:var(--color-text-muted); display:block; margin-bottom:4px;">Customer Progress Photos:</span>
-                <div style="display:flex; gap:8px;">
-                  <div style="width:60px; height:60px; border-radius:4px; overflow:hidden; background-color:hsl(35, 20%, 80%); display:flex; align-items:center; justify-content:center; font-size:10px; font-weight:600; color:white;">Day 1</div>
-                  <div style="width:60px; height:60px; border-radius:4px; overflow:hidden; background-color:hsl(35, 25%, 93%); display:flex; align-items:center; justify-content:center; font-size:10px; font-weight:600; color:var(--color-terracotta);">Day 14</div>
-                  <div style="width:60px; height:60px; border-radius:4px; overflow:hidden; background-color:hsl(120, 15%, 85%); display:flex; align-items:center; justify-content:center; font-size:10px; font-weight:600; color:var(--color-sage);">Day 28</div>
+          ${(() => {
+            const dist = product.rating >= 4.8 ? [82, 12, 4, 1, 1]
+                      : product.rating >= 4.6 ? [72, 17, 7, 2, 2]
+                      : [63, 21, 10, 3, 3];
+            const reviews = [
+              { avatar: "images/avatar_sarah.png", name: "Sarah J.", meta: "Combination Skin", date: "June 2026", stars: 5, title: "Absolutely transformed my dry areas!", text: `I have dry patches on my cheeks that wouldn't budge. After using the ${product.name} daily, my face is visibly hydrated and radiant. The packaging looks incredibly premium on my vanity!`, photos: [product.gallery[1]] },
+              { avatar: "images/avatar_maria.png", name: "Maria L.", meta: "Mature, Combination Skin", date: "May 2026", stars: 5, title: "Visible results in six weeks.", text: `Gentle enough for nightly use but genuinely effective. The texture of the ${product.name} absorbs beautifully with zero pilling under my morning SPF.`, photos: [product.gallery[2]] },
+              { avatar: "images/avatar_aisha.png", name: "Aisha K.", meta: "Sensitive Skin", date: "April 2026", stars: 4, title: "Clean ingredients, minimal scent.", text: "I appreciate that there is no synthetic fragrance. Smells purely like clean clinical ingredients. Soft texture. Excellent absorption.", photos: [] },
+            ];
+            return `
+            <div class="reviews-layout">
+              <aside class="reviews-summary">
+                <span class="reviews-score">${product.rating}</span>
+                ${getStarsHtml(product.rating)}
+                <span class="reviews-count-label">Based on ${product.reviewsCount} verified reviews</span>
+                <div class="rating-bars">
+                  ${dist.map((pct, i) => `
+                    <div class="rating-bar-row">
+                      <span class="rating-bar-label">${5 - i}<i class="fa-solid fa-star" aria-hidden="true"></i></span>
+                      <div class="rating-bar-bg"><div class="rating-bar-fg" style="width: ${pct}%;"></div></div>
+                      <span class="rating-bar-pct">${pct}%</span>
+                    </div>
+                  `).join("")}
                 </div>
+                <button class="btn btn-secondary btn-pill" id="pdp-write-review" style="width:100%;">Write a Review</button>
+              </aside>
+              <div class="reviews-list">
+                ${reviews.map(r => `
+                  <article class="review-card">
+                    <header class="review-card-header">
+                      <img src="${r.avatar}" alt="Portrait of ${r.name}" class="review-avatar" loading="lazy" />
+                      <div class="review-meta">
+                        <span class="review-name">${r.name} <span class="review-verified"><i class="fa-solid fa-circle-check" aria-hidden="true"></i> Verified Buyer</span></span>
+                        <span class="review-skin">${r.meta} &nbsp;&bull;&nbsp; ${r.date}</span>
+                      </div>
+                      ${getStarsHtml(r.stars)}
+                    </header>
+                    <h4 class="review-title">${r.title}</h4>
+                    <p class="review-text">"${r.text}"</p>
+                    ${r.photos.length ? `
+                      <div class="review-photos">
+                        ${r.photos.map(ph => `<img src="${ph}" alt="Customer photo of ${product.name}" loading="lazy" />`).join("")}
+                      </div>
+                    ` : ""}
+                  </article>
+                `).join("")}
               </div>
-              <div class="testimonial-card">
-                ${getStarsHtml(5)}
-                <span style="font-size:13px; font-weight:700; color:var(--color-text);">Absolutely transformed my dry areas!</span>
-                <p class="testimonial-text">"I have dry patches on my cheeks that wouldn't budge. After using S&C daily, my face is visibly hydrated and radiant. The packaging looks incredibly premium on my vanity!"</p>
-                <span class="testimonial-author">Claire M., 29 &mdash; Combination Skin</span>
-              </div>
-              <div class="testimonial-card">
-                ${getStarsHtml(4)}
-                <span style="font-size:13px; font-weight:700; color:var(--color-text);">Clean ingredients, minimal scent.</span>
-                <p class="testimonial-text">"I appreciate that there is no synthetic fragrance. Smells purely like clean clinical ingredients. Soft texture. Excellent absorption."</p>
-                <span class="testimonial-author">Jessica H., 38 &mdash; Sensitive Skin</span>
-              </div>
-            </div>
-          </div>
+            </div>`;
+          })()}
         </div>
       </div>
 
@@ -2367,6 +2386,14 @@ function renderPDP(container, productId) {
     sliderWrap.addEventListener("mouseleave", () => {
       mainImg.classList.remove("zoomed");
       mainImg.style.transformOrigin = "center center";
+    });
+  }
+
+  // Write-a-review CTA (form not yet implemented)
+  const writeReviewBtn = document.getElementById("pdp-write-review");
+  if (writeReviewBtn) {
+    writeReviewBtn.addEventListener("click", () => {
+      showToast("Thanks for your interest! Review submissions are coming soon.", "info");
     });
   }
 
