@@ -2745,6 +2745,10 @@ footer {
 
 /* Custom standard column widths for mobile compatibility */
 @media (max-width: 767px) {
+  .announcement-bar {
+    font-size: 11px;
+  }
+
   .grid-12>div {
     grid-column: span 12 !important;
   }
