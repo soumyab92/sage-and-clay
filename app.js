@@ -664,6 +664,10 @@ function openDrawer(drawer, overlay) {
   drawer.setAttribute("aria-hidden", "false");
   document.body.style.overflow = "hidden";
   
+  if (drawer && drawer.id === "filter-sidebar") {
+    document.body.classList.add("filter-drawer-open");
+  }
+  
   // Trap focus
   const focusable = drawer.querySelectorAll('button, [href], input, select, textarea, [tabindex="0"]');
   if (focusable.length > 0) {
@@ -677,6 +681,10 @@ function closeDrawer(drawer, overlay) {
   overlay.setAttribute("aria-hidden", "true");
   drawer.setAttribute("aria-hidden", "true");
   document.body.style.overflow = "";
+  
+  if (drawer && drawer.id === "filter-sidebar") {
+    document.body.classList.remove("filter-drawer-open");
+  }
 }
 
 function showToast(message, type = "info") {

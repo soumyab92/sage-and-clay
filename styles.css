@@ -1197,6 +1197,11 @@ header.scrolled .logo-img {
   }
 }
 
+body.filter-drawer-open #app-view {
+  position: relative;
+  z-index: 2000 !important;
+}
+
 /* --- Specific Page/View Designs --- */
 
 /* 🏠 Home Page Views */
