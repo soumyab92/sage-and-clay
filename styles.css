@@ -2749,6 +2749,10 @@ footer {
     font-size: 11px;
   }
 
+  .btn {
+    font-size: 12px;
+  }
+
   .grid-12>div {
     grid-column: span 12 !important;
   }
