@@ -1765,7 +1765,7 @@ body.filter-drawer-open #app-view {
   }
 
   .filter-sidebar .filter-drawer-body {
-    padding: 0 !important;
+    /* padding: 0 !important; */
     overflow-y: visible !important;
     height: auto !important;
     gap: var(--spacing-md);
@@ -1820,13 +1820,13 @@ body.filter-drawer-open #app-view {
   margin-bottom: var(--spacing-md);
 }
 
-@media (min-width: 768px) {
+/* @media (min-width: 768px) {
   .shop-header {
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
   }
-}
+} */
 
 .sort-container {
   display: flex;

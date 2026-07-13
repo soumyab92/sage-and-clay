@@ -663,11 +663,11 @@ function openDrawer(drawer, overlay) {
   overlay.setAttribute("aria-hidden", "false");
   drawer.setAttribute("aria-hidden", "false");
   document.body.style.overflow = "hidden";
-  
+
   if (drawer && drawer.id === "filter-sidebar") {
     document.body.classList.add("filter-drawer-open");
   }
-  
+
   // Trap focus
   const focusable = drawer.querySelectorAll('button, [href], input, select, textarea, [tabindex="0"]');
   if (focusable.length > 0) {
@@ -681,7 +681,7 @@ function closeDrawer(drawer, overlay) {
   overlay.setAttribute("aria-hidden", "true");
   drawer.setAttribute("aria-hidden", "true");
   document.body.style.overflow = "";
-  
+
   if (drawer && drawer.id === "filter-sidebar") {
     document.body.classList.remove("filter-drawer-open");
   }
@@ -865,8 +865,8 @@ function renderProductCard(product) {
         <!-- Full-bleed studio shot with detail-crop hover swap -->
         <a href="#product?id=${product.id}" style="display:block; width:100%; height:100%;">
           ${product.image
-            ? `<img src="${product.image}" alt="${product.name}" class="product-card-img product-real-image" loading="lazy" />`
-            : renderProductSVG(product, 140)}
+      ? `<img src="${product.image}" alt="${product.name}" class="product-card-img product-real-image" loading="lazy" />`
+      : renderProductSVG(product, 140)}
           ${product.gallery && product.gallery[1] ? `
             <img src="${product.gallery[1]}" alt="" aria-hidden="true" class="product-card-img product-card-img-hover" loading="lazy" />
           ` : ""}
@@ -1159,14 +1159,14 @@ function toggleWishlist(productId) {
   }
 
   saveState();
-  
+
   // Re-render active product card wishlist buttons if they exist
   document.querySelectorAll(`.product-card-wishlist[data-id="${productId}"]`).forEach(btn => {
     btn.classList.toggle("active");
     const fillState = state.wishlist.includes(productId) ? "currentColor" : "none";
     btn.querySelector("svg").setAttribute("fill", fillState);
   });
-  
+
   // PDP Wishlist check
   const pdpWishBtn = document.querySelector(`.pdp-wishlist-btn[data-id="${productId}"]`);
   if (pdpWishBtn) {
@@ -1471,9 +1471,9 @@ function initScrollReveal(scope) {
 // --- Home Page ---
 function renderHome(container) {
   document.title = "SAGE & CLAY | Clinical Skincare with Sensorial Warmth";
-  
+
   const bestsellers = PRODUCTS_DB.filter(p => p.badges.includes("Bestseller"));
-  
+
   container.innerHTML = `
     <!-- Hero Section: full-width panel, text left, blended product photo right -->
     <section class="hero-section view-section">
@@ -1504,12 +1504,12 @@ function renderHome(container) {
         ${[0, 1].map(copy => `
           <div class="marquee-group" ${copy === 1 ? `aria-hidden="true"` : ""}>
             ${[
-              { icon: "fa-paw", color: "var(--color-sage)", title: "Cruelty Free & Vegan", desc: "Never tested on animals. 100% plant and biotechnology formulations." },
-              { icon: "fa-stethoscope", color: "var(--color-terracotta)", title: "Clinical Trust", desc: "Dermatologist formulated and tested. Free from synthetic fragrances." },
-              { icon: "fa-leaf", color: "var(--color-sage)", title: "Sensorial Warmth", desc: "Tactile textures and skin-soothing botanical bases." },
-              { icon: "fa-arrow-rotate-left", color: "var(--color-terracotta)", title: "30-Day Free Returns", desc: "Love it or send it back for a full, hassle-free refund." },
-              { icon: "fa-truck-fast", color: "var(--color-sage)", title: "Free Shipping Over $50", desc: "Fast dispatch within 24 hours, carbon-neutral delivery." },
-            ].map(v => `
+      { icon: "fa-paw", color: "var(--color-sage)", title: "Cruelty Free & Vegan", desc: "Never tested on animals. 100% plant and biotechnology formulations." },
+      { icon: "fa-stethoscope", color: "var(--color-terracotta)", title: "Clinical Trust", desc: "Dermatologist formulated and tested. Free from synthetic fragrances." },
+      { icon: "fa-leaf", color: "var(--color-sage)", title: "Sensorial Warmth", desc: "Tactile textures and skin-soothing botanical bases." },
+      { icon: "fa-arrow-rotate-left", color: "var(--color-terracotta)", title: "30-Day Free Returns", desc: "Love it or send it back for a full, hassle-free refund." },
+      { icon: "fa-truck-fast", color: "var(--color-sage)", title: "Free Shipping Over $50", desc: "Fast dispatch within 24 hours, carbon-neutral delivery." },
+    ].map(v => `
               <div class="value-prop-item">
                 <span class="value-prop-icon"><i class="fa-solid ${v.icon}" style="color:${v.color};" aria-hidden="true"></i></span>
                 <div>
@@ -1529,13 +1529,13 @@ function renderHome(container) {
       <h2 style="text-align: center; margin-bottom: var(--spacing-lg);" data-reveal>Shop by Ritual Step</h2>
       <div class="category-grid mobile-carousel" id="home-category-carousel">
         ${[
-          { cat: "Cleansers", label: "Cleansers", img: "images/calming_sage_cleanser.png", alt: "Calming Sage Cleanser bottle styled with fresh sage leaves" },
-          { cat: "Serums", label: "Serums", img: "images/barrier_boost_serum.png", alt: "Barrier Boost Serum dropper bottle on a warm sand backdrop" },
-          { cat: "Moisturizers", label: "Moisturizers", img: "images/terracotta_glow_moisturizer.png", alt: "Terracotta Glow Moisturizer jar with a soft cream swatch" },
-          { cat: "Sunscreen", label: "Sunscreen", img: "images/mineral_shield_sunscreen.png", alt: "Mineral Shield Sunscreen tube in warm natural sunlight" },
-          { cat: "Masks & Exfoliants", label: "Masks", img: "images/aha_exfoliant_mask.png", alt: "AHA Exfoliant Mask jar with a textured clay smear" },
-          { cat: "Eye Care", label: "Eye Care", img: "images/restorative_eye_cream.png", alt: "Restorative Eye Cream jar resting on a smooth stone" },
-        ].map((c, i) => `
+      { cat: "Cleansers", label: "Cleansers", img: "images/calming_sage_cleanser.png", alt: "Calming Sage Cleanser bottle styled with fresh sage leaves" },
+      { cat: "Serums", label: "Serums", img: "images/barrier_boost_serum.png", alt: "Barrier Boost Serum dropper bottle on a warm sand backdrop" },
+      { cat: "Moisturizers", label: "Moisturizers", img: "images/terracotta_glow_moisturizer.png", alt: "Terracotta Glow Moisturizer jar with a soft cream swatch" },
+      { cat: "Sunscreen", label: "Sunscreen", img: "images/mineral_shield_sunscreen.png", alt: "Mineral Shield Sunscreen tube in warm natural sunlight" },
+      { cat: "Masks & Exfoliants", label: "Masks", img: "images/aha_exfoliant_mask.png", alt: "AHA Exfoliant Mask jar with a textured clay smear" },
+      { cat: "Eye Care", label: "Eye Care", img: "images/restorative_eye_cream.png", alt: "Restorative Eye Cream jar resting on a smooth stone" },
+    ].map((c, i) => `
           <a href="#shop?category=${c.cat}" class="category-tile" data-reveal style="--reveal-delay: ${i * 80}ms;">
             <span class="category-tile-img-wrap">
               <img src="${c.img}" alt="${c.alt}" class="category-tile-img" loading="lazy" />
@@ -1585,11 +1585,11 @@ function renderHome(container) {
       <h2 style="text-align: center; margin-bottom: var(--spacing-lg);" data-reveal>Target Your Skin Concerns</h2>
       <div class="concern-grid">
         ${[
-          { concern: "Acne", title: "Acne & Blemishes", subtitle: "Clarify & Refine", img: "images/quiz_skin_options.png", alt: "Close-up portraits showing clear, healthy skin across different skin types" },
-          { concern: "Anti-Aging", title: "Lines & Aging", subtitle: "Smooth & Firm", img: "images/about_hero.png", alt: "Botanical skincare lab with active-ingredient formulations in amber glass" },
-          { concern: "Hydration", title: "Dehydration", subtitle: "Plump & Hydrate", img: "images/hero_lifestyle.png", alt: "Woman with dewy, hydrated skin applying serum in natural light" },
-          { concern: "Sensitivity", title: "Redness & Irritation", subtitle: "Soothe & Calm", img: "images/blog_hero.png", alt: "Calming skincare ritual flat lay with soothing botanical ingredients" },
-        ].map((c, i) => `
+      { concern: "Acne", title: "Acne & Blemishes", subtitle: "Clarify & Refine", img: "images/quiz_skin_options.png", alt: "Close-up portraits showing clear, healthy skin across different skin types" },
+      { concern: "Anti-Aging", title: "Lines & Aging", subtitle: "Smooth & Firm", img: "images/about_hero.png", alt: "Botanical skincare lab with active-ingredient formulations in amber glass" },
+      { concern: "Hydration", title: "Dehydration", subtitle: "Plump & Hydrate", img: "images/hero_lifestyle.png", alt: "Woman with dewy, hydrated skin applying serum in natural light" },
+      { concern: "Sensitivity", title: "Redness & Irritation", subtitle: "Soothe & Calm", img: "images/blog_hero.png", alt: "Calming skincare ritual flat lay with soothing botanical ingredients" },
+    ].map((c, i) => `
           <div class="concern-card" onclick="window.location.hash='#shop?concern=${c.concern}'" data-reveal style="--reveal-delay: ${i * 80}ms;">
             <img src="${c.img}" alt="${c.alt}" class="concern-card-img" loading="lazy" />
             <div class="concern-card-overlay">
@@ -1732,7 +1732,7 @@ function initMobileCarousels(scope) {
 // --- Shop Page ---
 function renderShop(container, filterParams = {}) {
   document.title = "Shop Clinical Formulations | SAGE & CLAY";
-  
+
   // Set filters based on params
   if (filterParams.category) {
     state.activeFilters.category = [filterParams.category];
@@ -1774,7 +1774,6 @@ function renderShop(container, filterParams = {}) {
           <button class="btn btn-secondary filter-mobile-trigger" id="filter-mobile-trigger" aria-label="Toggle filters" style="gap:6px; font-size:12px; font-weight:600; align-items:center;">
             <i class="fa-solid fa-sliders"></i> Filter
           </button>
-          <span style="font-size:12px; font-weight:600; text-transform:uppercase;">Sort by:</span>
           <select id="sort-select" class="sort-select" aria-label="Sort products">
             <option value="bestselling" ${state.sortOption === "bestselling" ? "selected" : ""}>Bestselling</option>
             <option value="price-asc" ${state.sortOption === "price-asc" ? "selected" : ""}>Price: Low to High</option>
@@ -1942,7 +1941,7 @@ function renderShop(container, filterParams = {}) {
   function resetFilters() {
     state.activeFilters = { category: [], skinType: [], concern: [], price: null };
     state.sortOption = "bestselling";
-    
+
     // Reset checkboxes
     document.querySelectorAll(".filter-category-chk, .filter-concern-chk, .filter-skin-chk").forEach(chk => chk.checked = false);
     if (sortSel) sortSel.value = "bestselling";
@@ -2039,7 +2038,7 @@ function renderShop(container, filterParams = {}) {
 // --- Product Details Page (PDP) ---
 function renderPDP(container, productId) {
   const product = PRODUCTS_DB.find(p => p.id === productId);
-  
+
   if (!product) {
     render404(container);
     return;
@@ -2381,7 +2380,7 @@ function renderPDP(container, productId) {
     btn.onclick = () => {
       sizeBtns.forEach(b => b.classList.remove("active"));
       btn.classList.add("active");
-      
+
       selectedVolume = btn.dataset.vol;
       currentPrice = parseFloat(btn.dataset.price);
 
@@ -2519,8 +2518,8 @@ function addToCartWithDetails(productId, quantity, purchaseOption, size, priceOv
     return;
   }
 
-  const existingItem = state.cart.find(item => 
-    item.productId === productId && 
+  const existingItem = state.cart.find(item =>
+    item.productId === productId &&
     item.purchaseOption === purchaseOption &&
     item.size === size
   );
@@ -2556,7 +2555,7 @@ function renderQuiz(container) {
 
   function renderStep() {
     const questionData = QUIZ_QUESTIONS.find(q => q.step === state.activeQuizStep);
-    
+
     if (!questionData) {
       renderQuizResults();
       return;
@@ -2578,14 +2577,14 @@ function renderQuiz(container) {
 
           <div class="quiz-options-grid">
             ${questionData.options.map(opt => {
-              const isSelected = state.quizAnswers[questionData.key] === opt.value;
-              return `
+      const isSelected = state.quizAnswers[questionData.key] === opt.value;
+      return `
                 <div class="quiz-option ${isSelected ? "selected" : ""}" data-val="${opt.value}">
                   <span class="quiz-option-icon">${opt.icon}</span>
                   <span class="quiz-option-label">${opt.label}</span>
                 </div>
               `;
-            }).join("")}
+    }).join("")}
           </div>
 
           <div class="quiz-nav-row">
@@ -2877,7 +2876,7 @@ function renderCheckout(container) {
   const shipForm = document.getElementById("shipping-form");
   const payForm = document.getElementById("payment-form");
   const alertBox = document.getElementById("checkout-alert");
-  
+
   // Navigation elements
   const shipNav = document.getElementById("step-shipping-nav");
   const payNav = document.getElementById("step-payment-nav");
@@ -2920,7 +2919,7 @@ function renderCheckout(container) {
         promoFeedback.style.display = "block";
         promoFeedback.style.color = "var(--color-success)";
         promoFeedback.textContent = "Code SAGE10 (10% Off) applied!";
-        
+
         // Recalculate totals
         const discountAmt = subtotal * 0.1;
         const newSub = subtotal - discountAmt;
@@ -2931,7 +2930,7 @@ function renderCheckout(container) {
         if (discVal) discVal.textContent = `-$${discountAmt.toFixed(2)}`;
         if (taxVal) taxVal.textContent = `$${newTax.toFixed(2)}`;
         if (totalVal) totalVal.textContent = `$${newTotal.toFixed(2)}`;
-        
+
         tax = newTax;
         total = newTotal;
         showToast("10% Promo discount code applied!", "success");
@@ -2947,7 +2946,7 @@ function renderCheckout(container) {
   if (shipForm) {
     shipForm.onsubmit = (e) => {
       e.preventDefault();
-      
+
       const fname = document.getElementById("ship-fname");
       const lname = document.getElementById("ship-lname");
       const email = document.getElementById("ship-email");
@@ -3030,7 +3029,7 @@ function renderCheckout(container) {
           isSimulatedFailure = false; // Next retry succeeds
           submitBtn.textContent = "Place Order";
           submitBtn.disabled = false;
-          
+
           alertBox.style.display = "block";
           alertBox.style.border = "1px solid var(--color-error)";
           alertBox.style.backgroundColor = "var(--color-error-bg)";
@@ -3057,7 +3056,7 @@ function renderCheckout(container) {
 
           // Save order to guest/history lists
           state.orders.push(newOrder);
-          
+
           // Clear Cart
           state.cart = [];
           saveState();
@@ -3083,7 +3082,7 @@ function getDeliveryRangeText() {
 // --- Thank You / Order Confirmation ---
 function renderThankYou(container, orderNumber) {
   document.title = "Order Confirmed | SAGE & CLAY";
-  
+
   const order = state.orders.find(o => o.orderNumber === orderNumber);
 
   container.innerHTML = `
@@ -3140,7 +3139,7 @@ function renderThankYou(container, orderNumber) {
         showToast("Password must be at least 6 characters.", "error");
         return;
       }
-      
+
       // Merge guest logic
       state.activeUser = {
         email: order ? order.email : "guest@example.com",
@@ -3406,9 +3405,9 @@ function renderSearch(container, query = "") {
   document.title = `Search Results: "${query}" | SAGE & CLAY`;
 
   const cleanQuery = query.toLowerCase().trim();
-  const results = PRODUCTS_DB.filter(p => 
-    p.name.toLowerCase().includes(cleanQuery) || 
-    p.category.toLowerCase().includes(cleanQuery) || 
+  const results = PRODUCTS_DB.filter(p =>
+    p.name.toLowerCase().includes(cleanQuery) ||
+    p.category.toLowerCase().includes(cleanQuery) ||
     p.concern.toLowerCase().includes(cleanQuery)
   );
 
@@ -3762,8 +3761,8 @@ function renderWishlistPage(container, params = {}) {
         <div style="position:relative; aspect-ratio:1; background-color:var(--color-sand-light); border-radius:var(--radius-sm); display:flex; justify-content:center; align-items:center; overflow:hidden;">
           <a href="#product?id=${product.id}" style="display:block; width:100%; height:100%;">
             ${product.image
-              ? `<img src="${product.image}" alt="${product.name}" style="width:100%; height:100%; object-fit:cover;" loading="lazy" />`
-              : renderProductSVG(product, 120)}
+        ? `<img src="${product.image}" alt="${product.name}" style="width:100%; height:100%; object-fit:cover;" loading="lazy" />`
+        : renderProductSVG(product, 120)}
           </a>
           <button class="product-card-wishlist active wl-remove-item" data-id="${product.id}" aria-label="Remove from wishlist" style="top:8px; right:8px;">
             &times;
@@ -3951,7 +3950,7 @@ function renderReturns(container) {
     fileInput.onchange = () => {
       if (fileInput.files.length > 0) {
         fileMsg.style.display = "block";
-        fileMsg.textContent = `✓ Uploaded: ${fileInput.files[0].name} (${(fileInput.files[0].size/1024).toFixed(1)} KB)`;
+        fileMsg.textContent = `✓ Uploaded: ${fileInput.files[0].name} (${(fileInput.files[0].size / 1024).toFixed(1)} KB)`;
         showToast("Photo uploaded successfully!", "success");
       }
     };
@@ -3978,7 +3977,7 @@ function renderReturns(container) {
 // --- 404 View (Improved) ---
 function render404(container) {
   document.title = "Page Not Found | SAGE & CLAY";
-  
+
   container.innerHTML = `
     <div class="container view-section notfound-container">
       <span class="notfound-title" style="font-size:120px; font-family:var(--font-serif); color:var(--color-terracotta); line-height:1;">404</span>
@@ -4039,7 +4038,7 @@ function renderIcon(name, size = 16) {
 // --- Recently Viewed Carousel HTML Generator ---
 function renderRecentlyViewedHtml() {
   if (!state.recentlyViewed || state.recentlyViewed.length <= 1) return "";
-  
+
   const { route, params } = getRouteParams();
   const currentId = route === "#product" ? parseInt(params.id) : null;
   const filteredIds = state.recentlyViewed.filter(id => id !== currentId);
@@ -4051,14 +4050,14 @@ function renderRecentlyViewedHtml() {
       <h2 style="margin-bottom:var(--spacing-sm);">Recently Viewed</h2>
       <div class="carousel-wrap">
         ${filteredIds.map(id => {
-          const p = PRODUCTS_DB.find(prod => prod.id === id);
-          if (!p) return "";
-          return `
+    const p = PRODUCTS_DB.find(prod => prod.id === id);
+    if (!p) return "";
+    return `
             <div class="carousel-item">
               ${renderProductCard(p)}
             </div>
           `;
-        }).join("")}
+  }).join("")}
       </div>
     </div>
   `;
@@ -4075,7 +4074,7 @@ function init() {
 
   // Listen to hash changes for SPA router
   window.addEventListener("hashchange", router);
-  
+
   // Initial routing triggers
   router();
 
