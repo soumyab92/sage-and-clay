@@ -1751,7 +1751,7 @@ function renderShop(container, filterParams = {}) {
 
   // Render Skeleton sidebar and layouts
   container.innerHTML = `
-    <div class="container view-section" style="margin-top: var(--spacing-md);">
+    <div class="container view-section shop-view-section" style="margin-top: var(--spacing-md);">
       <!-- Breadcrumb -->
       <nav aria-label="Breadcrumb" style="font-size: 12px; color: var(--color-text-muted); margin-bottom: var(--spacing-sm);">
         <a href="#home">Home</a> &nbsp;/&nbsp; <span style="color: var(--color-text);">Shop All</span>

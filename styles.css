@@ -1183,6 +1183,20 @@ header.scrolled .logo-img {
   }
 }
 
+.shop-view-section {
+  transform: none !important;
+  animation: shop-view-fade-in var(--transition-normal) forwards !important;
+}
+
+@keyframes shop-view-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
 /* --- Specific Page/View Designs --- */
 
 /* 🏠 Home Page Views */
