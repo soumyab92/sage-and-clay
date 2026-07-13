@@ -1759,9 +1759,11 @@ function renderShop(container, filterParams = {}) {
         <div>
           <h1 style="font-size: 32px; font-family: var(--font-serif); margin-bottom: var(--spacing-xxs);">Clinical Skincare Formulations</h1>
           <p style="font-size: 14px; color: var(--color-text-muted);">Dermatologist-tested skincare solutions matching active efficacy with botanical safety.</p>
-        </div>
-        <!-- Sort dropdown -->
+           <!-- Sort container with Mobile Filter trigger -->
         <div class="sort-container">
+          <button class="btn btn-secondary filter-mobile-trigger" id="filter-mobile-trigger" aria-label="Toggle filters" style="gap:6px; font-size:12px; font-weight:600; align-items:center;">
+            <i class="fa-solid fa-sliders"></i> Filter
+          </button>
           <span style="font-size:12px; font-weight:600; text-transform:uppercase;">Sort by:</span>
           <select id="sort-select" class="sort-select" aria-label="Sort products">
             <option value="bestselling" ${state.sortOption === "bestselling" ? "selected" : ""}>Bestselling</option>
@@ -1771,14 +1773,19 @@ function renderShop(container, filterParams = {}) {
           </select>
         </div>
       </div>
-
+ 
       <!-- Shop Layout -->
       <div class="shop-layout">
+        <!-- Sidebar Filters Overlay -->
+        <div class="filter-sidebar-overlay" id="filter-sidebar-overlay"></div>
         <!-- Sidebar Filters -->
-        <aside class="filter-sidebar">
+        <aside class="filter-sidebar" id="filter-sidebar">
           <div style="display:flex; justify-content:space-between; align-items:center; border-bottom: 2px solid var(--color-text); padding-bottom:var(--spacing-xs);">
             <h3 style="font-family:var(--font-sans); font-size:14px; font-weight:700; text-transform:uppercase;">Filters</h3>
-            <button id="clear-filters-btn" class="btn-ghost" style="font-size:12px; text-decoration:underline; font-weight:600;">Clear All</button>
+            <div style="display:flex; align-items:center; gap:var(--spacing-sm);">
+              <button id="clear-filters-btn" class="btn-ghost" style="font-size:12px; text-decoration:underline; font-weight:600;">Clear All</button>
+              <button id="filter-close-btn" class="btn-ghost filter-close-btn" style="font-size:22px; line-height:1; font-weight:700;" aria-label="Close Filters">&times;</button>
+            </div>
           </div>
 
           <!-- Category filter -->
@@ -1932,6 +1939,27 @@ function renderShop(container, filterParams = {}) {
       priceVal.textContent = "$50";
     }
   }
+
+  // Mobile responsive filter drawer toggles
+  const filterTrigger = document.getElementById("filter-mobile-trigger");
+  const filterClose = document.getElementById("filter-close-btn");
+  const filterSidebar = document.getElementById("filter-sidebar");
+  const filterOverlay = document.getElementById("filter-sidebar-overlay");
+
+  if (filterTrigger && filterSidebar && filterOverlay) {
+    filterTrigger.onclick = () => {
+      filterSidebar.classList.add("open");
+      filterOverlay.classList.add("open");
+    };
+  }
+
+  const closeFilterDrawer = () => {
+    if (filterSidebar) filterSidebar.classList.remove("open");
+    if (filterOverlay) filterOverlay.classList.remove("open");
+  };
+
+  if (filterClose) filterClose.onclick = closeFilterDrawer;
+  if (filterOverlay) filterOverlay.onclick = closeFilterDrawer;
 
   // Wire UI events to state updates
   if (sortSel) {

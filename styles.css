@@ -1648,10 +1648,72 @@ header.scrolled .logo-img {
   }
 }
 
+/* Mobile filter overlay */
+.filter-sidebar-overlay {
+  display: none;
+}
+
+/* Mobile filter close button */
+.filter-close-btn {
+  display: none;
+}
+
+/* Mobile filter trigger button */
+.filter-mobile-trigger {
+  display: none;
+}
+
 .filter-sidebar {
   display: flex;
   flex-direction: column;
   gap: var(--spacing-md);
+}
+
+@media (max-width: 1023px) {
+  .filter-mobile-trigger {
+    display: inline-flex !important;
+  }
+  
+  .filter-close-btn {
+    display: block !important;
+  }
+
+  .filter-sidebar-overlay {
+    display: block;
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(4px);
+    z-index: 1050;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity var(--transition-normal);
+  }
+
+  .filter-sidebar-overlay.open {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .filter-sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 300px;
+    height: 100%;
+    background-color: var(--color-white);
+    z-index: 1060;
+    padding: var(--spacing-md);
+    box-shadow: var(--shadow-lg);
+    transform: translateX(-100%);
+    transition: transform var(--transition-normal);
+    overflow-y: auto;
+    display: flex;
+  }
+
+  .filter-sidebar.open {
+    transform: translateX(0);
+  }
 }
 
 .filter-widget {
