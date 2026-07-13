@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SAGE & CLAY | Clinical Skincare with Sensorial Warmth</title>
+  <meta name="description" content="Dermatologist-tested skincare routines tailoring clinical efficacy with sensorial warmth. Discover cleansers, serums, and custom routines.">
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="images/favicon.png">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="index.html">
+  <meta property="og:title" content="SAGE & CLAY | Clinical Skincare with Sensorial Warmth">
+  <meta property="og:description" content="Dermatologist-tested skincare routines tailoring clinical efficacy with sensorial warmth. Discover cleansers, serums, and custom routines.">
+  <meta property="og:image" content="images/og_image.png">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="index.html">
+  <meta name="twitter:title" content="SAGE & CLAY | Clinical Skincare with Sensorial Warmth">
+  <meta name="twitter:description" content="Dermatologist-tested skincare routines tailoring clinical efficacy with sensorial warmth. Discover cleansers, serums, and custom routines.">
+  <meta name="twitter:image" content="images/og_image.png">
+
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="fonts/fontawesome/css/all.min.css" />
+</head>
+<body>
+
+  <div class="announcement-bar" id="announcement-bar" aria-live="polite">
+    <div class="announcement-slide active"><i class="fa-solid fa-truck-fast" aria-hidden="true"></i> Free Shipping on orders over $50</div>
+    <div class="announcement-slide"><i class="fa-solid fa-wand-magic-sparkles" aria-hidden="true"></i> 10% off your first routine with the Skin Quiz</div>
+    <div class="announcement-slide"><i class="fa-solid fa-arrow-rotate-left" aria-hidden="true"></i> 30-day free returns on every order</div>
+  </div>
+
+  <!-- Header -->
+  <header>
+    <div class="container header-container">
+      <!-- Mobile hamburger (hidden >= 992px) -->
+      <button class="header-btn hamburger-btn" id="mobile-nav-trigger" aria-label="Open Menu" aria-expanded="false" aria-controls="mobile-nav-drawer">
+        <i class="fa-solid fa-bars" aria-hidden="true"></i>
+      </button>
+
+      <!-- Logo -->
+      <a href="#home" class="logo" id="header-logo" aria-label="SAGE & CLAY Home">
+        <img src="images/brand_logo.png" alt="SAGE & CLAY Skincare" class="logo-img" />
+      </a>
+
+      <!-- Desktop Navigation Menu -->
+      <nav class="nav-menu" id="nav-menu" aria-label="Main Navigation">
+        <div class="nav-item-dropdown" style="position: relative;">
+          <a href="#shop" class="nav-link" id="nav-shop">Shop <span style="font-size: 8px; vertical-align: middle;">▼</span></a>
+          <!-- Mega Menu Dropdown -->
+          <div class="mega-menu">
+            <div class="mega-menu-container">
+              <div class="mega-menu-col">
+                <span class="mega-menu-title">By Category</span>
+                <a href="#shop?category=Cleansers">Cleansers</a>
+                <a href="#shop?category=Serums">Serums</a>
+                <a href="#shop?category=Moisturizers">Moisturizers</a>
+                <a href="#shop?category=Sunscreen">Sunscreen</a>
+                <a href="#shop?category=Masks & Exfoliants">Masks & Exfoliants</a>
+                <a href="#shop?category=Eye Care">Eye Care</a>
+              </div>
+              <div class="mega-menu-col">
+                <span class="mega-menu-title">By Concern</span>
+                <a href="#shop?concern=Acne">Acne & Blemishes</a>
+                <a href="#shop?concern=Anti-Aging">Fine Lines & Aging</a>
+                <a href="#shop?concern=Hydration">Dryness & Hydration</a>
+                <a href="#shop?concern=Brightening">Dullness & Brightening</a>
+                <a href="#shop?concern=Sensitivity">Redness & Sensitivity</a>
+              </div>
+              <div class="mega-menu-col">
+                <span class="mega-menu-title">Custom Routines</span>
+                <a href="#quiz" style="font-weight: 700; color: var(--color-terracotta);"><i class="fa-solid fa-wand-magic-sparkles" style="margin-right:5px;"></i>Skin Quiz</a>
+                <a href="#returns" style="font-weight: 700; color: var(--color-accent-cta);"><i class="fa-solid fa-rotate-left" style="margin-right:5px;"></i>Return Requests</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <a href="#quiz" class="nav-link" id="nav-quiz">Skin Quiz</a>
+        <a href="#journal" class="nav-link" id="nav-journal">Journal</a>
+        <a href="#about" class="nav-link" id="nav-about">Philosophy</a>
+      </nav>
+
+      <!-- Header Actions -->
+      <div class="header-actions">
+        <!-- Floating Search -->
+        <div class="search-container" role="search">
+          <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+          <input type="text" class="search-input" id="search-input" placeholder="Search skincare..." aria-label="Search products">
+        </div>
+
+        <!-- Wishlist -->
+        <button class="header-btn" id="wishlist-trigger" aria-label="Open Wishlist">
+          <i class="fa-regular fa-heart" aria-hidden="true"></i>
+          <span class="cart-count" id="wishlist-badge" style="display: none;">0</span>
+        </button>
+
+        <!-- Cart -->
+        <button class="header-btn" id="cart-trigger" aria-label="Open Cart">
+          <i class="fa-solid fa-bag-shopping" aria-hidden="true"></i>
+          <span class="cart-count" id="cart-badge">0</span>
+        </button>
+
+        <!-- Account -->
+        <a href="#account" class="header-btn" id="account-btn" aria-label="Go to Account">
+          <i class="fa-regular fa-circle-user" aria-hidden="true"></i>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main View Target for SPA -->
+  <main id="app-view" aria-live="polite">
+    <!-- View content is injected here by app.js router -->
+    <div style="padding: 100px 0; text-align: center;">
+      <div class="skeleton skeleton-title" style="margin: 0 auto 20px;"></div>
+      <div class="skeleton skeleton-text" style="max-width: 400px; margin: 0 auto 10px;"></div>
+      <div class="skeleton skeleton-text" style="max-width: 300px; margin: 0 auto;"></div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container footer-grid">
+      <!-- About / Brand Column -->
+      <div class="grid-3-fraction">
+        <a href="#home" class="logo" style="margin-bottom: var(--spacing-sm); display: inline-flex; align-items: center; min-height: 52px;">
+          <img src="images/brand_logo.png" alt="SAGE & CLAY Skincare" class="logo-img" style="height: 52px; width: auto; object-fit: contain; mix-blend-mode: multiply;" />
+        </a>
+        <p style="font-size: 14px; color: var(--color-text-muted); margin-bottom: var(--spacing-md);">
+          Honest formulas. Proven results. Sensorial skincare rituals combining clinical active ingredients with calming botanicals.
+        </p>
+        <div class="footer-payment-icons" style="margin-top: var(--spacing-sm);">
+          <i class="fa-brands fa-cc-visa" aria-hidden="true" title="Visa"></i>
+          <i class="fa-brands fa-cc-mastercard" aria-hidden="true" title="Mastercard"></i>
+          <i class="fa-brands fa-cc-amex" aria-hidden="true" title="American Express"></i>
+          <i class="fa-brands fa-cc-paypal" aria-hidden="true" title="PayPal"></i>
+          <i class="fa-brands fa-cc-apple-pay" aria-hidden="true" title="Apple Pay"></i>
+        </div>
+      </div>
+
+      <!-- Shop Menu -->
+      <div class="grid-3-fraction">
+        <h3 class="footer-column-title">Shop</h3>
+        <ul class="footer-links">
+          <li><a href="#shop?category=Cleansers">Cleansers</a></li>
+          <li><a href="#shop?category=Serums">Serums</a></li>
+          <li><a href="#shop?category=Moisturizers">Moisturizers</a></li>
+          <li><a href="#shop?category=Sunscreen">Sunscreen</a></li>
+          <li><a href="#shop?category=Masks & Exfoliants">Masks & Exfoliants</a></li>
+          <li><a href="#shop?category=Eye Care">Eye Care</a></li>
+        </ul>
+      </div>
+
+      <!-- Skin Concerns -->
+      <div class="grid-3-fraction">
+        <h3 class="footer-column-title">Concerns</h3>
+        <ul class="footer-links">
+          <li><a href="#shop?concern=Acne">Acne & Blemishes</a></li>
+          <li><a href="#shop?concern=Anti-Aging">Fine Lines & Aging</a></li>
+          <li><a href="#shop?concern=Hydration">Dryness & Hydration</a></li>
+          <li><a href="#shop?concern=Brightening">Dullness & Brightening</a></li>
+          <li><a href="#shop?concern=Sensitivity">Redness & Sensitivity</a></li>
+        </ul>
+      </div>
+
+      <!-- Customer Care & Newsletter -->
+      <div class="grid-3-fraction">
+        <h3 class="footer-column-title">Join Us</h3>
+        <p class="footer-newsletter-text">Subscribe to receive skincare tips, ritual releases, and 10% off your first purchase.</p>
+        <form class="newsletter-form" id="newsletter-form">
+          <input type="email" class="newsletter-input" id="newsletter-email" placeholder="Your email address" required aria-label="Email address for newsletter">
+          <button type="submit" class="newsletter-btn">Subscribe</button>
+        </form>
+        <ul class="footer-links" style="margin-top: var(--spacing-md);">
+          <li><a href="#track">Track Order</a></li>
+          <li><a href="#returns">Request Return / Exchange</a></li>
+          <li><a href="#legal?page=shipping-returns">Shipping & Returns</a></li>
+          <li><a href="#legal?page=terms">Terms of Service</a></li>
+          <li><a href="#legal?page=privacy">Privacy Policy</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Footer Copyright -->
+    <div class="container footer-bottom">
+      <div>&copy; 2026 SAGE & CLAY. All rights reserved. Made with sensorial care.</div>
+      <div>Dermatologist Tested • Cruelty Free • Vegan Formulations</div>
+    </div>
+  </footer>
+
+  <!-- Mobile Navigation Drawer (below 992px) -->
+  <div class="drawer-overlay" id="mobile-nav-overlay" aria-hidden="true"></div>
+  <nav class="drawer drawer-left" id="mobile-nav-drawer" role="dialog" aria-modal="true" aria-label="Site Navigation" aria-hidden="true">
+    <div class="drawer-header">
+      <a href="#home" class="logo" aria-label="SAGE & CLAY Home">
+        <img src="images/brand_logo.png" alt="SAGE & CLAY Skincare" class="logo-img" style="height: 44px;" />
+      </a>
+      <button class="drawer-close" id="mobile-nav-close" aria-label="Close Menu">&times;</button>
+    </div>
+    <div class="drawer-body mobile-nav-body">
+      <!-- Search (replaces the hidden header search on mobile) -->
+      <div class="mobile-nav-search" role="search">
+        <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+        <input type="text" id="mobile-search-input" placeholder="Search skincare..." aria-label="Search products" />
+      </div>
+
+      <!-- Shop accordion -->
+      <button class="mobile-nav-link mobile-nav-toggle" id="mobile-shop-toggle" aria-expanded="false" aria-controls="mobile-shop-panel">
+        Shop <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
+      </button>
+      <div class="mobile-nav-panel" id="mobile-shop-panel">
+        <div class="mobile-nav-panel-inner">
+          <span class="mobile-nav-subtitle">By Category</span>
+          <a href="#shop?category=Cleansers">Cleansers</a>
+          <a href="#shop?category=Serums">Serums</a>
+          <a href="#shop?category=Moisturizers">Moisturizers</a>
+          <a href="#shop?category=Sunscreen">Sunscreen</a>
+          <a href="#shop?category=Masks & Exfoliants">Masks & Exfoliants</a>
+          <a href="#shop?category=Eye Care">Eye Care</a>
+          <span class="mobile-nav-subtitle">By Concern</span>
+          <a href="#shop?concern=Acne">Acne & Blemishes</a>
+          <a href="#shop?concern=Anti-Aging">Fine Lines & Aging</a>
+          <a href="#shop?concern=Hydration">Dryness & Hydration</a>
+          <a href="#shop?concern=Brightening">Dullness & Brightening</a>
+          <a href="#shop?concern=Sensitivity">Redness & Sensitivity</a>
+          <a href="#shop" style="font-weight: 700; color: var(--color-terracotta);">Shop All &rarr;</a>
+        </div>
+      </div>
+
+      <a href="#quiz" class="mobile-nav-link">Skin Quiz</a>
+      <a href="#journal" class="mobile-nav-link">Journal</a>
+      <a href="#about" class="mobile-nav-link">Philosophy</a>
+      <a href="#account" class="mobile-nav-link">Account</a>
+      <a href="#track" class="mobile-nav-link">Track Order</a>
+      <a href="#returns" class="mobile-nav-link">Returns & Exchanges</a>
+    </div>
+  </nav>
+
+  <!-- Wishlist Drawer -->
+  <div class="drawer-overlay" id="wishlist-overlay" aria-hidden="true"></div>
+  <div class="drawer" id="wishlist-drawer" role="dialog" aria-modal="true" aria-labelledby="wishlist-drawer-title" aria-hidden="true">
+    <div class="drawer-header">
+      <h2 class="drawer-title" id="wishlist-drawer-title">My Wishlist</h2>
+      <button class="drawer-close" id="wishlist-close" aria-label="Close Wishlist Drawer">&times;</button>
+    </div>
+    <div class="drawer-body" id="wishlist-drawer-body">
+      <!-- Items dynamically populated -->
+      <div class="empty-state" style="box-shadow: none; padding: var(--spacing-md) 0; margin: 0;">
+        <div class="empty-state-icon">❤️</div>
+        <p>Your wishlist is empty.</p>
+        <a href="#shop" class="btn btn-secondary" id="wishlist-shop-btn">Browse Shop</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Cart Drawer -->
+  <div class="drawer-overlay" id="cart-overlay" aria-hidden="true"></div>
+  <div class="drawer" id="cart-drawer" role="dialog" aria-modal="true" aria-labelledby="cart-drawer-title" aria-hidden="true">
+    <div class="drawer-header">
+      <h2 class="drawer-title" id="cart-drawer-title">Shopping Cart</h2>
+      <button class="drawer-close" id="cart-close" aria-label="Close Cart Drawer">&times;</button>
+    </div>
+    <div class="drawer-body">
+      <!-- Shipping Bar -->
+      <div class="shipping-progress-container">
+        <div class="shipping-progress-text" id="cart-shipping-text">You are $50 away from <span>Free Shipping</span></div>
+        <div class="shipping-progress-bar-bg">
+          <div class="shipping-progress-bar-fg" id="cart-shipping-bar" style="width: 0%;"></div>
+        </div>
+      </div>
+      <!-- Items Container -->
+      <div class="drawer-items-list" id="cart-drawer-items" style="display: flex; flex-direction: column; gap: var(--spacing-sm);">
+        <!-- Items dynamically populated -->
+        <div class="empty-state" style="box-shadow: none; padding: var(--spacing-md) 0; margin: auto 0;">
+          <div class="empty-state-icon">👜</div>
+          <p>Your cart is empty.</p>
+          <a href="#shop" class="btn btn-primary" id="cart-shop-btn">Start Shopping</a>
+        </div>
+      </div>
+    </div>
+    <div class="drawer-footer" id="cart-drawer-footer" style="display: none;">
+      <div class="summary-row">
+        <span>Subtotal</span>
+        <span id="cart-drawer-subtotal">$0.00</span>
+      </div>
+      <div class="summary-row" style="font-size: 12px; color: var(--color-text-muted);">
+        <span>Shipping</span>
+        <span id="cart-drawer-shipping">Calculated at next step</span>
+      </div>
+      <div class="summary-row total" style="margin-bottom: var(--spacing-md);">
+        <span>Total</span>
+        <span id="cart-drawer-total">$0.00</span>
+      </div>
+      <button class="btn btn-primary" id="cart-checkout-btn" style="width: 100%;">Proceed to Checkout</button>
+    </div>
+  </div>
+
+  <!-- Toast/Snackbar Container -->
+  <div class="toast-container" id="toast-container" aria-live="assertive"></div>
+
+  <!-- Scripts -->
+  <script src="app.js"></script>
+</body>
+</html>
