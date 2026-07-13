@@ -2230,7 +2230,8 @@ function renderPDP(container, productId) {
           <button class="pdp-tab-btn" id="tab-reviews-btn" role="tab" aria-selected="false" aria-controls="tab-reviews">Reviews (${product.reviewsCount})</button>
         </div>
 
-        <div class="pdp-tab-content active" id="tab-desc" role="tabpanel">
+        <button class="pdp-accordion-toggle open" data-tab="tab-desc" aria-expanded="true">Description <i class="fa-solid fa-chevron-down" aria-hidden="true"></i></button>
+        <div class="pdp-tab-content active mobile-open" id="tab-desc" role="tabpanel">
           <p style="margin-bottom:var(--spacing-sm);">${product.description}</p>
           <h4 style="margin-bottom:var(--spacing-xxs);">Full Ingredient List:</h4>
           <p style="font-size:13px; color:var(--color-text-muted); font-family:var(--font-sans); line-height:1.5;">
@@ -2238,6 +2239,7 @@ function renderPDP(container, productId) {
           </p>
         </div>
 
+        <button class="pdp-accordion-toggle" data-tab="tab-ingredients" aria-expanded="false">Key Ingredients <i class="fa-solid fa-chevron-down" aria-hidden="true"></i></button>
         <div class="pdp-tab-content" id="tab-ingredients" role="tabpanel">
           <p style="margin-bottom:var(--spacing-md);">Hover over underlined key ingredients for clinical definitions:</p>
           <ul style="list-style:none; display:flex; flex-direction:column; gap:var(--spacing-sm);">
@@ -2249,6 +2251,7 @@ function renderPDP(container, productId) {
           </ul>
         </div>
 
+        <button class="pdp-accordion-toggle" data-tab="tab-howtouse" aria-expanded="false">How to Use <i class="fa-solid fa-chevron-down" aria-hidden="true"></i></button>
         <div class="pdp-tab-content" id="tab-howtouse" role="tabpanel">
           <h4 style="margin-bottom:var(--spacing-xxs);">Method of Use:</h4>
           <p style="margin-bottom:var(--spacing-sm);">${product.usage}</p>
@@ -2256,6 +2259,7 @@ function renderPDP(container, productId) {
           <p>${product.caution}</p>
         </div>
 
+        <button class="pdp-accordion-toggle" data-tab="tab-reviews" aria-expanded="false">Reviews (${product.reviewsCount}) <i class="fa-solid fa-chevron-down" aria-hidden="true"></i></button>
         <div class="pdp-tab-content" id="tab-reviews" role="tabpanel">
           ${(() => {
             const dist = product.rating >= 4.8 ? [82, 12, 4, 1, 1]
@@ -2388,6 +2392,16 @@ function renderPDP(container, productId) {
       mainImg.style.transformOrigin = "center center";
     });
   }
+
+  // Mobile-only accordion toggles for the info tabs (independent open/close)
+  container.querySelectorAll(".pdp-accordion-toggle").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const panel = document.getElementById(btn.dataset.tab);
+      const isOpen = panel.classList.toggle("mobile-open");
+      btn.setAttribute("aria-expanded", String(isOpen));
+      btn.classList.toggle("open", isOpen);
+    });
+  });
 
   // Write-a-review CTA (form not yet implemented)
   const writeReviewBtn = document.getElementById("pdp-write-review");

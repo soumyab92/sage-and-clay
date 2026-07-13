@@ -3855,3 +3855,64 @@ footer {
 .review-photos img:hover {
   transform: scale(1.5);
 }
+
+
+/* ==========================================
+   PDP TABS -> ACCORDION ON MOBILE
+   ========================================== */
+
+.pdp-accordion-toggle {
+  display: none; /* desktop uses the tab bar */
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-sm) var(--spacing-xxs);
+  border-top: 1px solid var(--color-border);
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-text);
+  text-align: left;
+}
+
+.pdp-accordion-toggle i {
+  font-size: 12px;
+  color: var(--color-text-muted);
+  transition: transform var(--transition-normal);
+}
+
+.pdp-accordion-toggle.open {
+  color: var(--color-terracotta);
+}
+
+.pdp-accordion-toggle.open i {
+  transform: rotate(180deg);
+  color: var(--color-terracotta);
+}
+
+.pdp-accordion-toggle:focus-visible {
+  outline: 2px solid var(--color-terracotta);
+  outline-offset: -2px;
+}
+
+@media (max-width: 767px) {
+  .pdp-tabs-nav {
+    display: none;
+  }
+
+  .pdp-accordion-toggle {
+    display: flex;
+  }
+
+  /* On mobile the accordion state wins over the desktop .active state */
+  .pdp-tab-content {
+    display: none !important;
+  }
+
+  .pdp-tab-content.mobile-open {
+    display: block !important;
+    padding: var(--spacing-xs) var(--spacing-xxs) var(--spacing-md);
+  }
+}
