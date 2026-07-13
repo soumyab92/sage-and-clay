@@ -1765,6 +1765,7 @@ header.scrolled .logo-img {
   display: flex;
   align-items: center;
   gap: var(--spacing-xs);
+  margin: 20px 0;
 }
 
 .sort-select {
