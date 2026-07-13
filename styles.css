@@ -1648,71 +1648,60 @@ header.scrolled .logo-img {
   }
 }
 
-/* Mobile filter overlay */
-.filter-sidebar-overlay {
-  display: none;
-}
-
-/* Mobile filter close button */
-.filter-close-btn {
-  display: none;
-}
-
 /* Mobile filter trigger button */
 .filter-mobile-trigger {
   display: none;
 }
 
-.filter-sidebar {
-  display: flex;
-  flex-direction: column;
-  gap: var(--spacing-md);
-}
-
+/* On mobile/tablet, the filter sidebar is a drawer */
 @media (max-width: 1023px) {
   .filter-mobile-trigger {
     display: inline-flex !important;
   }
   
-  .filter-close-btn {
-    display: block !important;
-  }
-
-  .filter-sidebar-overlay {
-    display: block;
-    position: fixed;
-    inset: 0;
-    background-color: rgba(0, 0, 0, 0.4);
-    backdrop-filter: blur(4px);
+  /* Make sure the filter sidebar drawer overlay is layered above general page content */
+  .filter-sidebar-overlay.drawer-overlay {
     z-index: 1050;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity var(--transition-normal);
   }
-
-  .filter-sidebar-overlay.open {
-    opacity: 1;
-    pointer-events: auto;
-  }
-
-  .filter-sidebar {
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    width: 300px;
-    background-color: var(--color-white);
+  
+  .filter-sidebar.drawer {
     z-index: 1060;
-    padding: var(--spacing-md);
-    box-shadow: var(--shadow-lg);
-    transform: translateX(-100%);
-    transition: transform var(--transition-normal);
-    overflow-y: auto;
+    background-color: var(--color-white);
+    overflow: hidden; /* Outer container is fixed height, not scrollable */
+  }
+}
+
+/* On desktop, restore normal sidebar behavior */
+@media (min-width: 1024px) {
+  .filter-sidebar.drawer {
+    position: static;
+    width: auto;
+    max-width: none;
+    height: auto;
+    background-color: transparent;
+    box-shadow: none;
+    z-index: auto;
+    transform: none;
+    transition: none;
     display: flex;
+    flex-direction: column;
+    overflow: visible;
   }
 
-  .filter-sidebar.open {
-    transform: translateX(0);
+  .filter-sidebar .drawer-header {
+    border-bottom: 2px solid var(--color-text);
+    padding: 0 0 var(--spacing-xs) 0;
+  }
+
+  .filter-sidebar .drawer-close {
+    display: none !important;
+  }
+
+  .filter-sidebar .filter-drawer-body {
+    padding: 0 !important;
+    overflow-y: visible !important;
+    height: auto !important;
+    gap: var(--spacing-md);
   }
 }
 

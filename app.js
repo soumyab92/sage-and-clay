@@ -662,6 +662,7 @@ function openDrawer(drawer, overlay) {
   drawer.classList.add("open");
   overlay.setAttribute("aria-hidden", "false");
   drawer.setAttribute("aria-hidden", "false");
+  document.body.style.overflow = "hidden";
   
   // Trap focus
   const focusable = drawer.querySelectorAll('button, [href], input, select, textarea, [tabindex="0"]');
@@ -675,6 +676,7 @@ function closeDrawer(drawer, overlay) {
   drawer.classList.remove("open");
   overlay.setAttribute("aria-hidden", "true");
   drawer.setAttribute("aria-hidden", "true");
+  document.body.style.overflow = "";
 }
 
 function showToast(message, type = "info") {
@@ -1777,68 +1779,70 @@ function renderShop(container, filterParams = {}) {
       <!-- Shop Layout -->
       <div class="shop-layout">
         <!-- Sidebar Filters Overlay -->
-        <div class="filter-sidebar-overlay" id="filter-sidebar-overlay"></div>
+        <div class="drawer-overlay filter-sidebar-overlay" id="filter-sidebar-overlay" aria-hidden="true"></div>
         <!-- Sidebar Filters -->
-        <aside class="filter-sidebar" id="filter-sidebar">
-          <div style="display:flex; justify-content:space-between; align-items:center; border-bottom: 2px solid var(--color-text); padding-bottom:var(--spacing-xs);">
-            <h3 style="font-family:var(--font-sans); font-size:14px; font-weight:700; text-transform:uppercase;">Filters</h3>
+        <aside class="drawer drawer-left filter-sidebar" id="filter-sidebar" role="dialog" aria-modal="true" aria-hidden="true">
+          <div class="drawer-header">
+            <h3 style="font-family:var(--font-sans); font-size:16px; font-weight:700; text-transform:uppercase; margin: 0;">Filters</h3>
             <div style="display:flex; align-items:center; gap:var(--spacing-sm);">
               <button id="clear-filters-btn" class="btn-ghost" style="font-size:12px; text-decoration:underline; font-weight:600;">Clear All</button>
-              <button id="filter-close-btn" class="btn-ghost filter-close-btn" style="font-size:22px; line-height:1; font-weight:700;" aria-label="Close Filters">&times;</button>
+              <button id="filter-close-btn" class="drawer-close" aria-label="Close Filters">&times;</button>
             </div>
           </div>
+          
+          <div class="drawer-body filter-drawer-body" style="padding: var(--spacing-md); display: flex; flex-direction: column; gap: var(--spacing-md); overflow-y: auto; height: calc(100% - 60px);">
+            <!-- Category filter -->
+            <div class="filter-widget">
+              <h4 class="filter-widget-title">Category</h4>
+              <ul class="filter-list">
+                ${categories.map(c => `
+                  <li>
+                    <label class="filter-checkbox-label">
+                      <input type="checkbox" class="filter-category-chk" value="${c}" ${state.activeFilters.category.includes(c) ? "checked" : ""}>
+                      <span>${c}</span>
+                    </label>
+                  </li>
+                `).join("")}
+              </ul>
+            </div>
 
-          <!-- Category filter -->
-          <div class="filter-widget">
-            <h4 class="filter-widget-title">Category</h4>
-            <ul class="filter-list">
-              ${categories.map(c => `
-                <li>
-                  <label class="filter-checkbox-label">
-                    <input type="checkbox" class="filter-category-chk" value="${c}" ${state.activeFilters.category.includes(c) ? "checked" : ""}>
-                    <span>${c}</span>
-                  </label>
-                </li>
-              `).join("")}
-            </ul>
-          </div>
+            <!-- Skin concern filter -->
+            <div class="filter-widget">
+              <h4 class="filter-widget-title">Concern</h4>
+              <ul class="filter-list">
+                ${concerns.map(c => `
+                  <li>
+                    <label class="filter-checkbox-label">
+                      <input type="checkbox" class="filter-concern-chk" value="${c}" ${state.activeFilters.concern.includes(c) ? "checked" : ""}>
+                      <span>${c}</span>
+                    </label>
+                  </li>
+                `).join("")}
+              </ul>
+            </div>
 
-          <!-- Skin concern filter -->
-          <div class="filter-widget">
-            <h4 class="filter-widget-title">Concern</h4>
-            <ul class="filter-list">
-              ${concerns.map(c => `
-                <li>
-                  <label class="filter-checkbox-label">
-                    <input type="checkbox" class="filter-concern-chk" value="${c}" ${state.activeFilters.concern.includes(c) ? "checked" : ""}>
-                    <span>${c}</span>
-                  </label>
-                </li>
-              `).join("")}
-            </ul>
-          </div>
+            <!-- Skin type filter -->
+            <div class="filter-widget">
+              <h4 class="filter-widget-title">Skin Type</h4>
+              <ul class="filter-list">
+                ${skinTypes.map(st => `
+                  <li>
+                    <label class="filter-checkbox-label">
+                      <input type="checkbox" class="filter-skin-chk" value="${st}" ${state.activeFilters.skinType.includes(st) ? "checked" : ""}>
+                      <span>${st}</span>
+                    </label>
+                  </li>
+                `).join("")}
+              </ul>
+            </div>
 
-          <!-- Skin type filter -->
-          <div class="filter-widget">
-            <h4 class="filter-widget-title">Skin Type</h4>
-            <ul class="filter-list">
-              ${skinTypes.map(st => `
-                <li>
-                  <label class="filter-checkbox-label">
-                    <input type="checkbox" class="filter-skin-chk" value="${st}" ${state.activeFilters.skinType.includes(st) ? "checked" : ""}>
-                    <span>${st}</span>
-                  </label>
-                </li>
-              `).join("")}
-            </ul>
-          </div>
-
-          <!-- Price filter widget -->
-          <div class="filter-widget" style="border:none;">
-            <h4 class="filter-widget-title">Max Price</h4>
-            <div style="display:flex; align-items:center; gap:var(--spacing-xs);">
-              <input type="range" id="price-range" min="15" max="50" step="5" value="${state.activeFilters.price || 50}" style="flex:1; accent-color:var(--color-terracotta);" aria-label="Max Price">
-              <span id="price-range-val" style="font-size:14px; font-weight:600; width:40px;">$${state.activeFilters.price || 50}</span>
+            <!-- Price filter widget -->
+            <div class="filter-widget" style="border:none;">
+              <h4 class="filter-widget-title">Max Price</h4>
+              <div style="display:flex; align-items:center; gap:var(--spacing-xs);">
+                <input type="range" id="price-range" min="15" max="50" step="5" value="${state.activeFilters.price || 50}" style="flex:1; accent-color:var(--color-terracotta);" aria-label="Max Price">
+                <span id="price-range-val" style="font-size:14px; font-weight:600; width:40px;">$${state.activeFilters.price || 50}</span>
+              </div>
             </div>
           </div>
         </aside>
@@ -1948,14 +1952,14 @@ function renderShop(container, filterParams = {}) {
 
   if (filterTrigger && filterSidebar && filterOverlay) {
     filterTrigger.onclick = () => {
-      filterSidebar.classList.add("open");
-      filterOverlay.classList.add("open");
+      openDrawer(filterSidebar, filterOverlay);
     };
   }
 
   const closeFilterDrawer = () => {
-    if (filterSidebar) filterSidebar.classList.remove("open");
-    if (filterOverlay) filterOverlay.classList.remove("open");
+    if (filterSidebar && filterOverlay) {
+      closeDrawer(filterSidebar, filterOverlay);
+    }
   };
 
   if (filterClose) filterClose.onclick = closeFilterDrawer;
