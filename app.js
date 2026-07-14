@@ -1769,7 +1769,8 @@ function renderShop(container, filterParams = {}) {
         <div>
           <h1 style="font-size: 32px; font-family: var(--font-serif); margin-bottom: var(--spacing-xxs);">Clinical Skincare Formulations</h1>
           <p style="font-size: 14px; color: var(--color-text-muted);">Dermatologist-tested skincare solutions matching active efficacy with botanical safety.</p>
-           <!-- Sort container with Mobile Filter trigger -->
+        </div>
+        <!-- Sort container with Mobile Filter trigger -->
         <div class="sort-container">
           <button class="btn btn-secondary filter-mobile-trigger" id="filter-mobile-trigger" aria-label="Toggle filters" style="gap:6px; font-size:12px; font-weight:600; align-items:center;">
             <i class="fa-solid fa-sliders"></i> Filter

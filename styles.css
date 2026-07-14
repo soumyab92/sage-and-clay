@@ -1820,13 +1820,16 @@ body.filter-drawer-open #app-view {
   margin-bottom: var(--spacing-md);
 }
 
-/* @media (min-width: 768px) {
+@media (min-width: 1024px) {
   .shop-header {
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
   }
-} */
+  .shop-header .sort-container {
+    margin: 0;
+  }
+}
 
 .sort-container {
   display: flex;
